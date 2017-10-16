@@ -4,7 +4,8 @@ https://developer.apple.com/library/content/referencelibrary/GettingStarted/Deve
 
 
 
-Non-exhaustive list of steps learned :<br>
+<big>Non-exhaustive list of steps learned :</big>
+<br>
 Create a simple user interface with Interface Builder<br>
 Display a static table of data<br>
 Customize view properties in Interface Builder<br>
