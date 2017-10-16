@@ -1,8 +1,10 @@
 This is a project from an official Apple tutorial
-https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift
+https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift<br>
 
 
-Non-exhaustive list of steps learned :
+
+
+Non-exhaustive list of steps learned :<br>
 Create a simple user interface with Interface Builder<br>
 Display a static table of data<br>
 Customize view properties in Interface Builder<br>
@@ -17,5 +19,3 @@ Display editable tables of data<br>
 Understand the app lifecycle<br>
 Read data from a plist<br>
 Transition between different views<br>
-
-Made by Gwendoline Rodriguez<br />gwendolinerodriguez@gmail.com
