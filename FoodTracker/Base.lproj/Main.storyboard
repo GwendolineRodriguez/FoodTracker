@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="K56-hd-wH7">
-                                <rect key="frame" x="16" y="40" width="343" height="445"/>
+                                <rect key="frame" x="16" y="40" width="343" height="415"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="Meal Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTl-2U-I76">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="42"/>
@@ -34,15 +34,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEg-eb-rpF">
-                                        <rect key="frame" x="0.0" y="72" width="343" height="30"/>
-                                        <state key="normal" title="set Default Text"/>
-                                        <connections>
-                                            <action selector="setDefaultLabelText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fNg-Bi-P7a"/>
-                                        </connections>
-                                    </button>
                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="E14-q5-4T3">
-                                        <rect key="frame" x="0.0" y="102" width="343" height="343"/>
+                                        <rect key="frame" x="0.0" y="72" width="343" height="343"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="E14-q5-4T3" secondAttribute="height" multiplier="1:1" id="Sfc-Nl-kka"/>
@@ -54,7 +47,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vpO-cg-s03" customClass="RatingControl" customModule="FoodTracker" customModuleProvider="target">
-                                <rect key="frame" x="16" y="506" width="252" height="44"/>
+                                <rect key="frame" x="61" y="463" width="252" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="size" keyPath="starSize">
@@ -75,6 +68,7 @@
                         <outlet property="mealNameLabel" destination="kTl-2U-I76" id="g4Z-ga-WfZ"/>
                         <outlet property="nameTextField" destination="c8l-z7-FoV" id="zry-co-5IB"/>
                         <outlet property="photoImageView" destination="E14-q5-4T3" id="JnI-Bm-jGg"/>
+                        <outlet property="ratingControl" destination="vpO-cg-s03" id="jP7-ry-HRm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
