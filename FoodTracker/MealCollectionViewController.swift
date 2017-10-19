@@ -19,6 +19,17 @@ class MealCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Use the edit button item provided by the Collection view controller.
+        navigationItem.leftBarButtonItem = editButtonItem
+        
+        // Load any saved meals, otherwise load sample data.
+        if let savedMeals = loadMeals() {
+            meals += savedMeals
+        } else {
+            // Load the sample data.
+            loadSampleMeals()
+        }
+        
         // Load the sample data.
         loadSampleMeals()
     }
@@ -99,27 +110,24 @@ class MealCollectionViewController: UICollectionViewController {
      }
      */
     
-    /*
+    
      // Uncomment this method to specify if the specified item should be selected
      override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
      return true
      }
-     */
     
-    /*
      // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
      override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-     return false
+     return true
      }
      
      override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-     return false
+     return true
      }
      
      override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
      
-     }
-     */
+     } 
     
     //MARK: Private Methods
     private func loadSampleMeals() {
@@ -143,6 +151,19 @@ class MealCollectionViewController: UICollectionViewController {
         meals += [meal1, meal2, meal3]
     }
     
+    private func saveMeals() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(meals, toFile: Meal.ArchiveURL.path)
+        if isSuccessfulSave {
+            os_log("Meals successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save meals...", log: OSLog.default, type: .error)
+        }
+    }
+    
+    private func loadMeals() -> [Meal]?  {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Meal.ArchiveURL.path) as? [Meal]
+    }
+    
     //MARK: Actions
     @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as?
@@ -159,7 +180,8 @@ class MealCollectionViewController: UICollectionViewController {
                 meals.append(meal)
                 collectionView?.insertItems(at: [newIndexPath])
             }
+            // Save the meals.
+            saveMeals()
         }
     }
-    
 }
