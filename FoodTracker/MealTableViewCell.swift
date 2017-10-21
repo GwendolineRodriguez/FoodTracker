@@ -1,5 +1,5 @@
 //
-//  MealCollectionViewCell.swift
+//  MealTableViewCell.swift
 //  FoodTracker
 //
 //  Created by Gwendoline Rodriguez on 18/10/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MealCollectionViewCell: UICollectionViewCell {
+class MealTableViewCell: UITableViewCell {
     
     //MARK: Properties
     @IBOutlet weak var nameLabel: UILabel!
@@ -19,10 +19,10 @@ class MealCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//        
-//        // Configure the view for the selected state
-//    }
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        // Configure the view for the selected state
+    }
     
 }

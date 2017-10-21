@@ -1,5 +1,5 @@
 //
-//  MealCollectionViewController.swift
+//  MealTableViewController.swift
 //  FoodTracker
 //
 //  Created by Gwendoline Rodriguez on 18/10/17.
@@ -9,9 +9,7 @@
 import UIKit
 import os.log
 
-private let reuseIdentifier = "Cell"
-
-class MealCollectionViewController: UICollectionViewController {
+class MealTableViewController: UITableViewController {
     
     //MARK: Properties
     var meals = [Meal]()
@@ -19,7 +17,7 @@ class MealCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Use the edit button item provided by the Collection view controller.
+        // Use the edit button item provided by the Table view controller.
         navigationItem.leftBarButtonItem = editButtonItem
         
         // Load any saved meals, otherwise load sample data.
@@ -40,7 +38,6 @@ class MealCollectionViewController: UICollectionViewController {
     }
     
     // MARK: - Navigation
-    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -55,11 +52,11 @@ class MealCollectionViewController: UICollectionViewController {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             
-            guard let selectedMealCell = sender as? MealCollectionViewCell else {
+            guard let selectedMealCell = sender as? MealTableViewCell else {
                 fatalError("Unexpected sender: \(String(describing: sender))")
             }
             
-            guard let indexPath = collectionView?.indexPath(for: selectedMealCell) else {
+            guard let indexPath = tableView?.indexPath(for: selectedMealCell) else {
                 fatalError("The selected cell is not being displayed by the table")
             }
             
@@ -71,24 +68,22 @@ class MealCollectionViewController: UICollectionViewController {
         }
     }
     
-    // MARK: UICollectionViewDataSource
-    
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+    // MARK: UITableViewDataSource
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
-    }
+    }    
     
-    
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return meals.count
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // Collection view cells are reused and should be dequeued using a cell identifier.
-        let cellIdentifier = "MealCollectionViewCell"
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? MealCollectionViewCell  else {
-            fatalError("The dequeued cell is not an instance of MealCollectionViewCell.")
+        // Table view cells are reused and should be dequeued using a cell identifier.
+        let cellIdentifier = "MealTableViewCell"
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MealTableViewCell  else {
+            fatalError("The dequeued cell is not an instance of MealTableViewCell.")
         }
         
         // Fetches the appropriate meal for the data source layout.
@@ -101,33 +96,23 @@ class MealCollectionViewController: UICollectionViewController {
         return cell
     }
     
-    // MARK: UICollectionViewDelegate
-    
-    /*
-     // Uncomment this method to specify if the specified item should be highlighted during tracking
-     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     */
-    
-    
-     // Uncomment this method to specify if the specified item should be selected
-     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-    
-     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-     override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-     return true
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-     
-     } 
+    // Override to support conditional editing of the table view.
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
+    }
+
+    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            meals.remove(at: indexPath.row)
+            saveMeals()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
+    }
     
     //MARK: Private Methods
     private func loadSampleMeals() {
@@ -166,20 +151,21 @@ class MealCollectionViewController: UICollectionViewController {
     
     //MARK: Actions
     @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.source as?
-            MealViewController, let meal = sourceViewController.meal {
-            if let selectedIndexPathRow = collectionView?.indexPathsForSelectedItems?.first?.row {
+        if let sourceViewController = sender.source as? MealViewController, let meal = sourceViewController.meal {
+            
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update an existing meal.
-                meals[selectedIndexPathRow] = meal
-                let selectedIndexPath = IndexPath(row: selectedIndexPathRow, section: 0)
-                collectionView?.reloadItems(at: [selectedIndexPath])
-            } else {
+                meals[selectedIndexPath.row] = meal
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            }
+            else {
                 // Add a new meal.
                 let newIndexPath = IndexPath(row: meals.count, section: 0)
                 
                 meals.append(meal)
-                collectionView?.insertItems(at: [newIndexPath])
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
+            
             // Save the meals.
             saveMeals()
         }

@@ -31,7 +31,7 @@ https://developer.apple.com/library/content/referencelibrary/GettingStarted/Deve
 * Test a data model by writing and running unit tests
 * Understand the roles of table view delegates and data sources
 * Use an array to store and work with data
-* Display dynamic and editable data in a collection view
+* Display dynamic and editable data in a table view
 * Embed an existing view controller within a navigation controller in a storyboard
 * Create segues between view controllers
 * Edit the attributes of a segue in a storyboard using the Attributes inspector
