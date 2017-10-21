@@ -10,14 +10,7 @@ import XCTest
 @testable import FoodTracker
 
 class FoodTrackerTests: XCTestCase {
-    
-    //MARK: MealTableViewCell Tests
-    func testMealTableViewCellInit() {
-        
-    }
-    
-    
-    
+
     //MARK: Meal Class Tests
     
     // Confirm that the Meal initializer returns a Meal object when passed valid parameters.
