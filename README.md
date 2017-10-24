@@ -1,4 +1,4 @@
-# FoodTrack
+# FoodTracker
 
 This is a project from an official Apple tutorial
 https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift
