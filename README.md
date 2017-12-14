@@ -3,9 +3,9 @@
 This is a project from an official Apple tutorial
 https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift  
 
-![screenshot](./screenshot.png)
-<!-- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Epitech.png/1598px-Epitech.png" width="250"> -->
-## Steps learned :
+<img src="./screenshot.png" width="250">
+
+<!-- ## Steps learned :
 
 * Create a simple user interface with Interface Builder
 * Customize view properties in Interface Builder
@@ -42,4 +42,4 @@ https://developer.apple.com/library/content/referencelibrary/GettingStarted/Deve
 * Use stack views to create robust, flexible layouts
 * Differentiate between push and modal navigation
 * Understand the difference between static properties and instance properties
-* Use the NSCoding protocol to read and write data
+* Use the NSCoding protocol to read and write data -->
