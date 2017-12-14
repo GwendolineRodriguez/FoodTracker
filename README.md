@@ -1,8 +1,10 @@
 # FoodTracker
 
 This is a project from an official Apple tutorial
-https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift
+https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift  
 
+![screenshot](./screenshot.png)
+<!-- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Epitech.png/1598px-Epitech.png" width="250"> -->
 ## Steps learned :
 
 * Create a simple user interface with Interface Builder
